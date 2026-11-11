@@ -1,0 +1,24 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data (download from Kaggle; see README)
+data/raw/
+
+# Frontend
+node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

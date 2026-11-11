@@ -1,0 +1,26 @@
+# Run the whole app in containers (train the model locally first so artifacts/ exists):
+#   docker compose up --build
+# Frontend: http://localhost:8080   API: http://localhost:8000/docs
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      # The nginx-served frontend runs on :8080, so allow it in addition to Vite's :5173.
+      CORS_ORIGINS: "http://localhost:8080"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: "http://localhost:8000"
+    ports:
+      - "8080:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped

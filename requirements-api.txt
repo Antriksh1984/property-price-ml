@@ -1,0 +1,10 @@
+# Minimal runtime dependencies to serve the trained model (used by the backend Dockerfile).
+numpy==2.5.4
+pandas==3.1.1
+scipy==1.18.1
+scikit-learn==1.9.1
+xgboost==3.4.1
+joblib==1.6.0
+fastapi==0.162.4
+uvicorn[standard]==0.54.0
+pydantic==2.14.3

@@ -1,0 +1,194 @@
+{
+  "chosen_model": "XGBoost (tuned)",
+  "chosen_params": {
+    "colsample_bytree": 0.7825344828131279,
+    "learning_rate": 0.154256238943127,
+    "max_depth": 3,
+    "min_child_weight": 3,
+    "n_estimators": 812,
+    "reg_lambda": 8.778578373294495,
+    "subsample": 0.9395655297064336
+  },
+  "trained_at": "2026-11-11T10:12:50+00:00",
+  "target": "price (lakhs INR), modelled as log1p(price)",
+  "features": [
+    "location",
+    "total_sqft",
+    "bhk",
+    "bath"
+  ],
+  "cv_folds": 5,
+  "random_seed": 42,
+  "cv_results": [
+    {
+      "model": "LinearRegression",
+      "stage": "baseline",
+      "r2": 0.7204,
+      "r2_std": 0.3396,
+      "mae": 15.535,
+      "rmse": 40.838,
+      "rmse_std": 20.914
+    },
+    {
+      "model": "Ridge",
+      "stage": "baseline",
+      "r2": 0.715,
+      "r2_std": 0.3327,
+      "mae": 15.829,
+      "rmse": 41.948,
+      "rmse_std": 20.27
+    },
+    {
+      "model": "Lasso",
+      "stage": "baseline",
+      "r2": 0.5748,
+      "r2_std": 0.3519,
+      "mae": 20.8,
+      "rmse": 55.947,
+      "rmse_std": 19.998
+    },
+    {
+      "model": "RandomForest",
+      "stage": "baseline",
+      "r2": 0.7293,
+      "r2_std": 0.1248,
+      "mae": 17.171,
+      "rmse": 47.523,
+      "rmse_std": 16.264
+    },
+    {
+      "model": "XGBoost",
+      "stage": "baseline",
+      "r2": 0.8093,
+      "r2_std": 0.0999,
+      "mae": 16.402,
+      "rmse": 40.62,
+      "rmse_std": 17.537
+    },
+    {
+      "model": "XGBoost (tuned)",
+      "stage": "tuned",
+      "r2": 0.8336,
+      "r2_std": 0.096,
+      "mae": 15.551,
+      "rmse": 37.821,
+      "rmse_std": 17.15,
+      "best_params": {
+        "colsample_bytree": 0.7825344828131279,
+        "learning_rate": 0.154256238943127,
+        "max_depth": 3,
+        "min_child_weight": 3,
+        "n_estimators": 812,
+        "reg_lambda": 8.778578373294495,
+        "subsample": 0.9395655297064336
+      }
+    },
+    {
+      "model": "Ridge (tuned)",
+      "stage": "tuned",
+      "r2": 0.7204,
+      "r2_std": 0.3396,
+      "mae": 15.535,
+      "rmse": 40.839,
+      "rmse_std": 20.913,
+      "best_params": {
+        "alpha": 0.001267425589893723
+      }
+    }
+  ],
+  "test_metrics": {
+    "r2": 0.9124,
+    "mae": 14.493,
+    "rmse": 25.705,
+    "median_abs_pct_error": 11.29,
+    "interval_coverage": 0.8131
+  },
+  "interval": {
+    "low_quantile": 0.1,
+    "high_quantile": 0.9,
+    "low_ratio": 0.798,
+    "high_ratio": 1.2658
+  },
+  "dataset": {
+    "raw_rows": 13320,
+    "clean_rows": 7382,
+    "train_rows": 5905,
+    "test_rows": 1477,
+    "n_locations": 242,
+    "cleaning_steps": [
+      {
+        "step": "Drop unused columns",
+        "before": 13320,
+        "after": 13320,
+        "dropped": 0
+      },
+      {
+        "step": "Drop rows missing location/size/bath",
+        "before": 13320,
+        "after": 13246,
+        "dropped": 74
+      },
+      {
+        "step": "Parse size -> bhk",
+        "before": 13246,
+        "after": 13246,
+        "dropped": 0
+      },
+      {
+        "step": "Convert total_sqft to sq ft",
+        "before": 13246,
+        "after": 13246,
+        "dropped": 0
+      },
+      {
+        "step": "Clean + group rare locations",
+        "before": 13246,
+        "after": 13246,
+        "dropped": 0
+      },
+      {
+        "step": "Add price_per_sqft",
+        "before": 13246,
+        "after": 13246,
+        "dropped": 0
+      },
+      {
+        "step": "Remove sqft/bhk < 300",
+        "before": 13246,
+        "after": 12498,
+        "dropped": 748
+      },
+      {
+        "step": "Remove per-location pps outliers (mean +/- 1 std)",
+        "before": 12498,
+        "after": 10315,
+        "dropped": 2183
+      },
+      {
+        "step": "Remove BHK price-inversion outliers",
+        "before": 10315,
+        "after": 7393,
+        "dropped": 2922
+      },
+      {
+        "step": "Remove bath > bhk + 2",
+        "before": 7393,
+        "after": 7389,
+        "dropped": 4
+      },
+      {
+        "step": "Keep API range (sqft 300-30000, bhk/bath <= 10)",
+        "before": 7389,
+        "after": 7382,
+        "dropped": 7
+      },
+      {
+        "step": "Select final features",
+        "before": 7382,
+        "after": 7382,
+        "dropped": 0
+      }
+    ]
+  },
+  "training_seconds": 104.5
+}

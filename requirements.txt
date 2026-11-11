@@ -1,0 +1,16 @@
+# Full development environment (training, notebook, API, tests).
+# Versions are the ones this project was built and tested with (Python 3.12).
+-r requirements-api.txt
+
+# Training / plotting
+matplotlib==3.11.2
+
+# Notebook execution (nbconvert --execute)
+nbconvert==7.17.2
+nbformat==5.11.1
+ipykernel==7.4.0
+jupyter_client==8.10.0
+
+# Tests
+pytest==9.2.0
+httpx==0.28.1

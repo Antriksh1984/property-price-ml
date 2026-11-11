@@ -1,0 +1,10 @@
+.venv
+venv
+**/__pycache__
+**/node_modules
+frontend
+data
+notebooks
+tests
+.pytest_cache
+*.md
